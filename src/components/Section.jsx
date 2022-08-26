@@ -28,10 +28,9 @@ const Section = ({
         </motion.div>
         <Buttons>
           <motion.div
-            initial={{ opacity: 0, transform: "translateY(200px)" }}
+            initial={{ opacity: 0.5, transform: "translateY(200px)" }}
             whileInView={{
               opacity: 1,
-
               transform: "translateY(-1px)",
             }}
             transition={{ duration: 0.5 }}
@@ -42,9 +41,9 @@ const Section = ({
             </ButtonGroup>
           </motion.div>
           <motion.div
-            initial={{ opacity: 1, transform: "translateY(5px)" }}
-            animate={{opacity: 1, transform: "translateY(0px)" }}
-            transition={{ duration: 0.2, yoyo: Infinity }}
+            initial={{ opacity: 1, transform: "translateY(7px)" }}
+            animate={{ opacity: 1, transform: "translateY(0px)" }}
+            transition={{ duration: 0.5, repeat : Infinity }}
           >
             <img src="/images/down-arrow.svg" alt="" />
           </motion.div>

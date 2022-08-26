@@ -6,50 +6,47 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCars } from "./features/car/CarSlice";
 
-
 const Header = () => {
   const [open, setOpen] = useState(false);
   const cars = useSelector(selectCars);
   return (
     <Container>
-      <a href="#">
+      <div>
         <img src="/images/logo.svg" alt="" />
-      </a>
+      </div>
       <Menu>
-        {cars && cars.map((car, index) => (
-          <a key={index} href="#">{car}</a>
-
-        ))}
-
+        {cars && cars.map((car, index) => <button key={index}>{car}</button>)}
       </Menu>
       <RightMenu>
-        <a href="#">Shop</a>
-        <a href="#">Telsa Account</a>
+        <button>Shop</button>
+        <button>Telsa Account</button>
         <CustomMenu onClick={() => setOpen(true)} />
       </RightMenu>
       <BurgerMenu show={open}>
         <CloseWrapper>
           <CustomClose onClick={() => setOpen(false)} />
         </CloseWrapper>
-        {cars && cars.map((car, index) => (
-          <li><a key={index} href="#">{car}</a></li>
+        {cars &&
+          cars.map((car, index) => (
+            <li>
+              <button key={index}>{car}</button>
+            </li>
+          ))}
 
-        ))}
-
         <li>
-          <a href="#">Existing Inventory</a>
+          <button>Existing Inventory</button>
         </li>
         <li>
-          <a href="#">Used Inventory</a>
+          <button>Used Inventory</button>
         </li>
         <li>
-          <a href="#">Trade-in</a>
+          <button>Trade-in</button>
         </li>
         <li>
-          <a href="#">CyberTruck</a>
+          <button>CyberTruck</button>
         </li>
         <li>
-          <a href="#">Roadaster</a>
+          <button>Roadaster</button>
         </li>
       </BurgerMenu>
     </Container>
@@ -75,10 +72,21 @@ const Menu = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
-  a {
-    font-weight: 600;
+  button {
+    font-weight: 800;
     text-transform: uppercase;
     padding: 0 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  button:hover {
+    background: #cfc5c582;
+    border-radius: 20px;
+    padding: 10px;
   }
   @media (max-width: 768px) {
     display: none;
@@ -87,10 +95,14 @@ const Menu = styled.div`
 const RightMenu = styled.div`
   display: flex;
   align-items: center;
-  a {
+  button {
     font-weight: 600;
     text-transform: uppercase;
     margin-right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
   }
 `;
 const CustomMenu = styled(MenuIcon)`
@@ -109,25 +121,31 @@ const BurgerMenu = styled.div`
   display: flex;
   flex-direction: column;
   text-align: start;
-  transform: ${props => props.show ? 'translateX(0)' : 'translateX(100%)'};
-  transition: transform .3s ease-in-out;
+  transform: ${(props) => (props.show ? "translateX(0)" : "translateX(100%)")};
+  transition: transform 0.3s ease-in-out;
   li {
     padding: 15px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 
-    a {
+    button {
       font-weight: 600;
       text-transform: uppercase;
-      font-size:18px;
+      font-size: 18px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
     }
   }
-`
+  li:hover {
+    background: #cfc5c582;
+  }
+`;
 
 const CustomClose = styled(CloseIcon)`
   cursor: pointer;
- 
-`
+`;
 const CloseWrapper = styled.div`
-display: flex;
-justify-content: flex-end;
-`
+  display: flex;
+  justify-content: flex-end;
+`;
